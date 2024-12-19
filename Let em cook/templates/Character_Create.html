@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Character Sheet</title>
+    <style>
+      body { font-family: sans-serif; }
+      .container { max-width: 900px; margin: 20px auto; background-color: BlanchedAlmond;}
+        .section { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        .top-section { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+      .stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+      .spells { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="source/DnD_Logo.png" height="50px" width="100px" alt="D&D Logo"/>
+        <form method="post" id="save">
+        <div class="section top-section">
+            <div>
+                <label for="character-name">Персонаж:</label><br>
+                <input type="text" value="{{ info[1] }}" name="charName" id="character-name" placeholder="Имя персонажа"> <br>
+            </div>
+            <div>
+                <label for="class">Класс:</label><br>
+                 <select name="class" id="class" onselect="Воин">
+                  {% for opt in classes %}
+                    <option name="{{ opt }}" id="{{ opt }}">{{ opt }}
+                    </option>
+                    {% endfor %}
+                 </select><br>
+                <label for="race">Раса:</label><br>
+                 <select name="race" id="race">
+                  {% for opt2 in races %}
+                    <option name="{{ opt3 }}" id="{{ opt2 }}">{{ opt2 }}
+                    </option>
+                    {% endfor %}
+                 </select><br>
+                <label for="background">Предыстория:</label><br>
+                <select name="bg" id="background">
+                  {% for opt3 in backgrounds %}
+                    <option name="{{ opt3 }}" id="{{ opt3 }}">{{ opt3 }}
+                    </option>
+                    {% endfor %}
+                 </select><br>
+                  <label for="aligment">Мировоззрение:</label><br>
+                <input type="text" value="{{ info[5] }}" name="wv" id="aligment" placeholder="Мировоззрение"><br>
+            </div>
+            <div>
+                <label for="player">Игрок:</label><br>
+                <input type="text" value="{{ info[0] }}" name="name" id="player" placeholder="Имя игрока"><br>
+                 <label for="experience">Очки Опыта:</label><br>
+                <input type="number" value="{{ info[6] }}" name="xp" id="experience" placeholder="ОО"><br>
+                <label for="level">Уровень:</label><br>
+                <input type="number" value="{{ info[7] }}" name="level" id="level" min=1 max=20 placeholder="1">
+            </div>
+        </div>
+
+        <div class="section stats">
+            <div>
+            <label>СИЛА</label> <label id="sbonus"></label><br> <input name="s" type="number" id="strength" placeholder="10" value="{{ info[8] }}"/> <br>
+            <label>ЛОВКОСТЬ</label> <label id="dbonus"></label><br> <input name="d" type="number" id="dexterity" placeholder="10" value="{{ info[9] }}"/> <br>
+             <label>ТЕЛОСЛОЖЕНИЕ</label> <label id="cobonus"></label><br> <input name="c" type="number" id="constitution" placeholder="10" value="{{ info[10] }}"/> <br>
+             <label>ИНТЕЛЛЕКТ</label> <label id="ibonus"></label><br> <input name="i" type="number" id="intelligence" placeholder="10" value="{{ info[11] }}"/> <br>
+              <label>МУДРОСТЬ</label> <label id="wbonus"></label><br> <input name="w" type="number" id="wisdom" placeholder="10" value="{{ info[12] }}"/> <br>
+              <label>ХАРИЗМА</label> <label id="chbonus"></label><br> <input name="ch" type="number" id="charisma" placeholder="10" value="{{ info[13] }}"/> <br>
+               </div>
+
+               <div>
+            <label for="armor-class">Класс Брони:</label><br>
+            <input name="armor" type="number" id="armor-class" placeholder="0" value="{{ info[14] }}"><br>
+              <label for="initiative"> Инициатива: </label><br>
+               <label id="initiative"> </label><br>
+               <label for="movement" > Скорость:</label><br>
+              <input name="movement" type="text" id="movement" placeholder="0" value="{{ info[15] }}"> <br>
+             </div>
+             <div>
+             <label for="max-hp">Макс Хитов:</label><br> <input name="maxhp" type="text" id="max-hp" value="{{ info[16] }}"> <br>
+              <label for="current-hp">Текущие Хиты:</label><br> <input name="currenthp" type="text" id="current-hp" value="{{ info[17] }}"> <br>
+                 <label for="time-hp">Временные Хиты:</label><br> <input type="text" id="time-hp"/> <br>
+             <label for="dice-hp">Кость хитов:</label><br> <input name="dicehp" type="text" id="dice-hp" value="{{ info[18] }}"> <br>
+             </div>
+
+        </div>
+        <label>Подготовленные заклинания и заговоры:</label>
+        <div class="section spells">
+            <div>
+                <label for="spells0">Заговоры:</label><br>
+                <div id="spells0">
+
+                </div>
+                </div>
+            <div>
+                <label for="spells1">Заклинания 1-ого круга:</label><br>
+                <div id="spells1">
+
+                </div>
+                </div>
+            <div>
+                <label for="spells2">Заклинания 2-ого круга:</label><br>
+                <div id="spells2">
+
+                </div>
+                </div>
+            <div>
+                <label for="spells3">Заклинания 3-ого круга:</label><br>
+                <div id="spells3">
+
+                </div>
+                </div>
+        <div>
+                <label for="spells0">Заклинания 4-ого круга:</label><br>
+                <div id="spells4">
+
+                </div>
+                </div>
+            <div>
+                <label for="spells1">Заклинания 5-ого круга:</label><br>
+                <div id="spells5">
+
+                </div>
+                </div>
+            <div>
+                <label for="spells2">Заклинания 6-ого круга:</label><br>
+                <div id="spells6">
+
+                </div>
+                </div>
+            <div>
+                <label for="spells3">Заклинания 7-ого круга +:</label><br>
+                <div id="spells7">
+
+                </div>
+                </div>
+        </div>
+        <div>
+            <button type="submit" form="save">Сохранить Чарник</button>
+        </div>
+        </form>
+        <form id="random" action="/randomed">
+            <button type="submit" form="random">Создать случайного персонажа</button>
+        </form>
+        <form method="post" id="load" action="/loaded">
+        <div>
+            <button form="load" type="submit" name="loader">Загрузить Чарник по имени игрока и персонажа</button><br>
+            <label for="player_login">Игрок:</label><br>
+            <input type="text" value="" name="player_login" id="player_login" placeholder="Имя игрока"><br>
+            <label for="character_login">Персонаж:</label><br>
+            <input type="text" value="" name="character_login" id="character_login" placeholder="Имя персонажа"><br>
+        </div>
+        </form>
+    </div>
+    <script>
+    function spellsFill() {
+        document.getElementById("spells0").innerHTML = '<select id="spellsSelect0"> {% for opt in spells0list %} <option>{{ opt }} </option> {% endfor %} </select><br>'.repeat(4);
+        document.getElementById("spells1").innerHTML = '<select id="spellsSelect1"> {% for opt in spells1list %} <option>{{ opt }} </option> {% endfor %} </select><br>'.repeat(4);
+        document.getElementById("spells2").innerHTML = '<select id="spellsSelect2"> {% for opt in spells2list %} <option>{{ opt }} </option> {% endfor %} </select><br>'.repeat(4);
+        document.getElementById("spells3").innerHTML = '<select id="spellsSelect3"> {% for opt in spells3list %} <option>{{ opt }} </option> {% endfor %} </select><br>'.repeat(4);
+        document.getElementById("spells4").innerHTML = '<select id="spellsSelect4"> {% for opt in spells4list %} <option>{{ opt }} </option> {% endfor %} </select><br>'.repeat(4);
+        document.getElementById("spells5").innerHTML = '<select id="spellsSelect5"> {% for opt in spells5list %} <option>{{ opt }} </option> {% endfor %} </select><br>'.repeat(4);
+        document.getElementById("spells6").innerHTML = '<select id="spellsSelect6"> {% for opt in spells6list %} <option>{{ opt }} </option> {% endfor %} </select><br>'.repeat(4);
+        document.getElementById("spells7").innerHTML = '<select id="spellsSelect7"> {% for opt in spells7list %} <option>{{ opt }} </option> {% endfor %} </select><br>'.repeat(4);
+    }
+    function displayBonus() {
+        document.getElementById("initiative").innerHTML = Math.floor((document.getElementById("constitution").value - 10) / 2);
+        document.getElementById("sbonus").innerHTML = Math.floor((document.getElementById("strength").value - 10) / 2);
+        document.getElementById("dbonus").innerHTML = Math.floor((document.getElementById("dexterity").value - 10) / 2);
+        document.getElementById("cobonus").innerHTML = Math.floor((document.getElementById("constitution").value - 10) / 2);
+        document.getElementById("ibonus").innerHTML = Math.floor((document.getElementById("intelligence").value - 10) / 2);
+        document.getElementById("wbonus").innerHTML = Math.floor((document.getElementById("wisdom").value - 10) / 2);
+        document.getElementById("chbonus").innerHTML = Math.floor((document.getElementById("charisma").value - 10) / 2);
+        setTimeout(displayBonus, 1000);    // Вызывать функцию каждую секунду
+    }
+    spellsFill();
+    if ('{{ info[2] }}' != "") {
+        document.getElementById('{{ info[2] }}').selected = "selected";
+    }
+    if ('{{ info[3] }}' != "") {
+        document.getElementById('{{ info[3] }}').selected = "selected";
+    }
+    if ('{{ info[4] }}' != "") {
+        document.getElementById('{{ info[4] }}').selected = "selected";
+    }
+    window.onload = displayBonus;
+    </script>
+</body>
+</html>
