@@ -1,6 +1,7 @@
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.service import Service
 
 
 spells = list()
@@ -8,8 +9,10 @@ classes = list()
 races = list()
 backgrounds = list()
 
-op = webdriver.ChromeOptions()
-driver = webdriver.Chrome()
+service = Service(executable_path='/usr/local/bin/geckodriver')
+options = webdriver.FirefoxOptions()
+options.add_argument('--headless')
+driver = webdriver.Firefox(options=options, service=service)
 driver.get('https://dnd.su/spells/')  # ссылка на сайт с заклинаниями
 last_height = driver.execute_script("return document.body.scrollHeight")
 while True:
