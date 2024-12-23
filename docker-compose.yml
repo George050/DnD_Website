@@ -8,6 +8,7 @@ services:
       - "5000:5000"
     volumes:
       - ./Let_em_cook:/app
+      - ./Let_em_cook/db:/var/lib/mysql
     environment:
       - FLASK_APP=front.py
       - FLASK_ENV=development

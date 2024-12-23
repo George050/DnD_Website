@@ -48,7 +48,7 @@ def initialization(info):
 def starter():
     info = ["", "", "", "", "", "", 0, 1, 10, 10, 10, 10, 10, 10, 10, "30 футов", "", "", "", ""]
     if request.method == "POST":
-        conn = sqlite3.connect('DataBase.db')
+        conn = sqlite3.connect('db/DataBase.db')
         cursor = conn.cursor()
         cursor.execute('''CREATE TABLE IF NOT EXISTS characters
                              (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -102,7 +102,7 @@ def starter():
 def loader():
     info = ["", "", "", "", "", "", 0, 1, 10, 10, 10, 10, 10, 10, 10, "30 футов", "", "", "", ""]
     if request.method == "POST":
-        conn = sqlite3.connect('DataBase.db')
+        conn = sqlite3.connect('db/DataBase.db')
         cursor = conn.cursor()
         res = cursor.execute("SELECT * FROM characters WHERE name='{}' AND charName='{}'".format(
             request.form.get("player_login"), request.form.get("character_login"))).fetchone()
@@ -136,5 +136,5 @@ def randomer():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
 
