@@ -8,31 +8,12 @@ app = Flask(__name__)
 
 
 def initialization(info):
-    sp0 = ["Отсутствует"]
-    sp1 = ["Отсутствует"]
-    sp2 = ["Отсутствует"]
-    sp3 = ["Отсутствует"]
-    sp4 = ["Отсутствует"]
-    sp5 = ["Отсутствует"]
-    sp6 = ["Отсутствует"]
-    sp7 = ["Отсутствует"]
+    sp0, sp1, sp2, sp3, sp4, sp5, sp6, sp7 = (["Отсутствует"] for _ in range(8))
     for i in spells:
-        if i[1] == '0':
-            sp0.append(i[0])
-        elif i[1] == '1':
-            sp1.append(i[0])
-        elif i[1] == '2':
-            sp2.append(i[0])
-        elif i[1] == '3':
-            sp3.append(i[0])
-        elif i[1] == '4':
-            sp4.append(i[0])
-        elif i[1] == '5':
-            sp5.append(i[0])
-        elif i[1] == '6':
-            sp6.append(i[0])
-        elif i[1] == '7':
-            sp7.append(i[0])
+        if int(i[1]) >= 7:
+            locals()[f"sp7"].append(i[0])
+        else:
+            locals()[f"sp{i[1]}"].append(i[0])
     return render_template('Character_Create.html', classes=classes, races=races, backgrounds=backgrounds, info=info,
                            spells0list=sp0,
                            spells1list=sp1,
@@ -89,9 +70,7 @@ def starter():
                             '{}', '{}', '{}', '{}', '{}', '{}',
                             '{}', '{}', '{}', '{}', '{}'
                         )
-                    """.format(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8],
-                               info[9], info[10], info[11], info[12], info[13], info[14], info[15], info[16],
-                               info[17], info[18])
+                    """.format(*info)
         cursor.execute(sql)
         conn.commit()
         conn.close()

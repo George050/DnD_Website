@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <img src="source/DnD_Logo.png" height="50px" width="100px" alt="D&D Logo"/>
-        <form method="post" id="save">
+        <form method="post" id="save" action="/">
         <div class="section top-section">
             <div>
                 <label for="character-name">Персонаж:</label><br>
@@ -144,9 +144,9 @@
         <form method="post" id="load" action="/loaded">
         <div>
             <button form="load" type="submit" name="loader">Загрузить Чарник по имени игрока и персонажа</button><br>
-            <label for="player_login">Игрок:</label><br>
+            <label for="player_login">У какого игрока искать персонажа:</label><br>
             <input type="text" value="" name="player_login" id="player_login" placeholder="Имя игрока"><br>
-            <label for="character_login">Персонаж:</label><br>
+            <label for="character_login">Какого персонажа найти:</label><br>
             <input type="text" value="" name="character_login" id="character_login" placeholder="Имя персонажа"><br>
         </div>
         </form>
