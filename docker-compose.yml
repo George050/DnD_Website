@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: ./App
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./App:/app
+      - ./App/db:/var/lib/mysql
+    environment:
+      - FLASK_APP=front.py
+      - FLASK_ENV=development
+    stdin_open: true
+    tty: true
